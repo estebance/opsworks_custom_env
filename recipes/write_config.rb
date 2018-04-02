@@ -4,6 +4,6 @@ node[:deploy].each do |application, deploy|
   custom_env_template do
     application application
     deploy deploy
-    # env node[:deploy][application][:environment_variables]
+    env node[:deploy][application][:environment_variables]
   end
 end
