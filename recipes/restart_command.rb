@@ -8,7 +8,6 @@ node[:deploy].each do |application, deploy|
       command "#{deploy[:deploy_to]}/shared/scripts/unicorn clean-restart"
     end
     user deploy[:user]
-
     action :nothing
   end
 
