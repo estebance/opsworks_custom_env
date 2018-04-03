@@ -1,11 +1,8 @@
 node[:deploy].each do |application, deploy|
-  rails_env = deploy[:rails_env]
-  current_path = deploy[:current_path]
-  Chef::Log.info("Precompiling Rails assets with environment #{rails_env}")
+  Chef::Log.info("Precompiling Rails assets")
   execute 'rake assets:precompile' do
-    cwd current_path
-    user 'deploy'
+    cwd "#{deploy[:deploy_to]}/curent/"
     command 'bundle exec rake assets:precompile'
-    environment 'RAILS_ENV' => rails_env
+    environment 'RAILS_ENV' => deploy[:rails_env]
   end
 end
